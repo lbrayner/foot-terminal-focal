@@ -1,30 +1,30 @@
-Build foot:
+Build `foot`:
 
 ```bash
 docker build -t foot-terminal-focal .
 ```
 
-Prepare environment for libxkbcommon in /usr/local:
+Prepare environment for `libxkbcommon` in `/usr/local`:
 
 ```bash
-sudo -u gdm ln -s /usr/share/X11/xkb /var/lib/gdm3/.config
-echo "XKB_CONFIG_ROOT=/usr/share/X11/xkb" >> ~/.pam_environment
+sudo mkdir -p /usr/local/share/X11
+sudo ln -s /usr/share/X11/xkb /usr/local/share/X11
 ```
 
-Install libxkbcommon:
+Install `libxkbcommon`:
 
 ```bash
 docker run -it --rm -v /:/destdir foot-terminal-focal bash -c \
     'cd /libxkbcommon && DESTDIR=/destdir meson install -C build'
 ```
 
-Reload the ld cache:
+Reload the `ld` cache:
 
 ```bash
 sudo ldconfig -v
 ```
 
-Install foot:
+Install `foot`:
 
 ```bash
 docker run -it --rm -v /:/destdir foot-terminal-focal bash -c \
