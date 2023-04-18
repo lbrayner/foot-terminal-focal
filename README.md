@@ -14,7 +14,8 @@ echo "XKB_CONFIG_ROOT=/usr/share/X11/xkb" >> ~/.pam_environment
 Install libxkbcommon:
 
 ```bash
-docker run -it --rm -v /:/destdir foot-terminal-focal bash -c 'cd /libxkbcommon && DESTDIR=/destdir meson install -C build'
+docker run -it --rm -v /:/destdir foot-terminal-focal bash -c \
+    'cd /libxkbcommon && DESTDIR=/destdir meson install -C build'
 ```
 
 Reload the ld cache:
@@ -26,5 +27,7 @@ sudo ldconfig -v
 Install foot:
 
 ```bash
-docker run -it --rm -v /:/destdir foot-terminal-focal bash -c 'cd /foot && DESTDIR=/destdir meson install -C build'
+docker run -it --rm -v /:/destdir foot-terminal-focal bash -c \
+    'cd /foot && DESTDIR=/destdir meson install -C build'
+cd /usr/local/share/terminfo && sudo rsync -rRtu f /etc/terminfo
 ```
