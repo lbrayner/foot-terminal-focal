@@ -37,3 +37,6 @@ Neovim requires that `VTE_VERSION` be set to 6800:
 ```bash
 export VTE_VERSION=6800
 ```
+
+You can, alternatively, set `TERM` to st-265color and not worry about `VTE_VERSION`,
+and everything seems to work just fine.
